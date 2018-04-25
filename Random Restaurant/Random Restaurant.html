@@ -1,82 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-Hant-TW">
 <head>
-	<title>google map</title>
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLBocZ4RF3vXj7toXIXDmznd3eYf1BGVE&libraries=places"></script>
-	<style type="text/css">
-		body {
-			margin: 0;
-			color: rgb(84, 84, 84);
-			font-family: "Microsoft JhengHei", serif;
-			text-align: center;
-		}
-		h1 {
-			color: rgb(84, 84, 84);
-		}
-		button {
-			border: solid 2px rgb(241, 205, 179);
-			border-radius: 15px;
-			background-color: rgba(255, 255, 255, 0);
-			font-size: 10px;
-			font-family: serif;
-			padding: 12px 20px;
-			color: rgb(84, 84, 84);
-			margin: 0;
-			margin-left: 5%;
-		}
-		button:hover {
-			background-color: rgb(241, 205, 179);
-		}
-		.main {
-			width: 60%;
-			margin: 0 auto;
-		}
-		.map {
-			display: none;
-		}
-		.main h1 {
-			margin: 5%;
-			text-align: center;
-		}
-		.control {
-			width: 60%;
-			height: 43px;
-			margin: 0 auto;
-		}
-		.control span {
-			margin: 13px 0;
-		}
-		.slider {
-			position: relative;
-			top: 5px;
-			margin: 0 10px;
-		}
-		.progress_body {
-			width: 50%;
-			height: 20px;
-			border: solid 1px rgb(241, 205, 179);
-			display: flex;
-			margin: 5% auto;
-		}
-		.progress {
-			flex-basis: 0%;
-			height: 20px;
-			background-color: rgb(241, 205, 179);
-		}
-		.answer {
-			margin: 0 auto;
-			width: 60%;
-			height: 40%;
-			border: 5px solid rgb(241, 205, 179);
-		}
-		.change {
-			margin-top: 5%;
-			margin-left: 0;
-		}
-	</style>
+	<title>Random Restaurant</title>
+	<meta charset="utf-8">
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLBocZ4RF3vXj7toXIXDmznd3eYf1BGVE&libraries=places"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 	<div class="map"></div>
+	<div class="left">
+		<ul>
+			<li class="title" id="title">營業中餐廳</li>
+		</ul>
+	</div>
 	<div class="main">
 		<h1>今天吃什麼</h1>
 		<div class="control">
@@ -87,153 +23,23 @@
 			<button id="start">開始決定</button>
 		</div>
 		<div class="progress_body">
+			<div class="loading">Loading</div>
 			<div class="progress">
 			</div>
 		</div>
 		<div class="answer">
 			<h1>快點決定吧!</h1>
+			<div class="info phone">
+				<img src="images/logo_phone.png" alt="logo_phone">
+				<div></div>
+			</div>
+			<div class="info address">
+				<img src="images/logo_pin.png" alt="logo_pin">
+				<div></div>
+			</div>
 		</div>
 		<button class="change">換一個</button>
 	</div>
-	<script type="text/javascript">
-		//DOM element
-		let distance = document.querySelector('#distance');
-		let distanceValue = document.querySelector('#distanceValue');
-		let start = document.querySelector('#start');
-		let answer = document.querySelector('.answer h1');
-		let change = document.querySelector('.change');
-		
-
-
-		let myLatLng, map, service;
-		let getDetailList = [];
-		let restaurantList = [];
-		let intervalID;
-		let progress = document.querySelector('.progress');
-
-		function setMap() {
-			map = new google.maps.Map(document.querySelector('.map'), {
-				zoom: 15
-			});
-			service = new google.maps.places.PlacesService(map);
-		}
-
-		function findNearRestaurant(LatLng, dis) {
-			console.log('3.findNearRestaurant');
-			let request = {
-				location: LatLng,
-				radius: `${dis}`,
-				type: ['restaurant'],
-				openNow: true
-			}
-			service.radarSearch(request, handleSerch);
-		};
-
-		function handleSerch(results, status) {
-			console.log('4.handleSerch');
-  			if (status == google.maps.places.PlacesServiceStatus.OK) {
-  				getDetailList.length = 0;
-  				restaurantList.length = 0;
-  				handleProgress();
-  				results.forEach(result => {
-  					let request = {
-  						placeId: result.place_id
-  					}
-  					getDetailList.push(request);
-  				});
-  				//prevent api flow limit
-  				let i = 0;
-  				console.log('5.getName');
-  				intervalID = setInterval(function() {
-  					if (i < getDetailList.length) {
-  						service.getDetails(getDetailList[i], handleRestaurant);
-  						handleProgress();
-  						i++;
-  					} else {
-  						handleProgress();
-  						randomPick(restaurantList);
-  						clearInterval(intervalID);
-  						console.log('Done:stopinterval');
-  					}
-  					console.log(restaurantList);
-  				}, 500);
-  				console.log(results);
-  				console.log(getDetailList);
-  			} else {
-  				console.log('radar search failed!');
-  				if (status == google.maps.places.PlacesServiceStatus.ZERO_RESULTS) {
-  					changeAnswer('所有店家都休息中');
-  					console.log(status);
-  				} else {
-  					console.log(status);
-  				}
-  			}
-		}
-
-		function handleProgress() {
-			console.log('handleProgress');
-			if (getDetailList.length === 0) {
-				progress.style.flexBasis = '0%';
-			} else {
-				let basis = (restaurantList.length/getDetailList.length)*100;
-				progress.style.flexBasis = basis+'%';
-			}
-		}
-
-		function handleRestaurant(results, status) {
-			if (status == google.maps.places.PlacesServiceStatus.OK) {
-				restaurantList.push(results.name);
-			} else {
-				console.log('get detail failed!');
-				console.log(status);
-			}
-		}
-
-		function getPosition(dis) {
-			//Geolocation API
-			console.log('2.getPosition');
-			if (navigator.geolocation) {
-				navigator.geolocation.getCurrentPosition((position) => {
-	      			myLatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-	      			map.setCenter(myLatLng);
-	      			findNearRestaurant(myLatLng, dis);
-	    		}, function() {
-	      			console.log('fail!');
-	    		});
-			} else {
-				console.log('get position failed!')
-			}
-		}
-
-		function randomPick(restaurant) {
-			let random = Math.round(Math.random()*restaurant.length);
-			if (random === restaurant.length) {
-				random = 0;
-			}
-			changeAnswer(restaurant[random]);
-		}
-
-		function changeAnswer(ans) {
-			answer.innerHTML = ans;
-		}
-
-		function handleSlider() {
-			distanceValue.innerHTML = ` ${this.value} `;
-		}
-
-		setMap();
-		distance.addEventListener('change', handleSlider);
-		distance.addEventListener('mousemove', handleSlider);
-		change.addEventListener('click', () => {
-			randomPick(restaurantList);
-		});
-		start.addEventListener('click', () => {
-			clearInterval(intervalID);
-			console.log('Restart:stopinterval', intervalID);
-  			console.log('1.addEventListener');
-			getPosition(distance.value);
-		});
-
-	</script>
+	<script src="Random_Restaurant.js"></script>
 </body>
 </html>

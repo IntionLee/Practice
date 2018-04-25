@@ -1,0 +1,148 @@
+body {
+	min-width: 900px;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	color: rgb(84, 84, 84);
+	font-family: "Microsoft JhengHei", serif;
+	text-align: center;
+}
+h1 {
+	font-size: 5em;
+	color: rgb(84, 84, 84);
+}
+ul {
+	margin: 0;
+	padding: 0;
+	text-align: left;
+}
+li {
+	font-size: 0.8em;
+	background: url(images/logo_food.png) no-repeat left;
+	padding-left: 20%;
+	margin: 3% 5%;
+	list-style: none;
+	line-height: 41px;
+	border-bottom: 2px solid white;
+}
+li:hover {
+	color: rgb(120, 120, 120);
+}
+button {
+	border: solid 2px rgb(241, 205, 179);
+	border-radius: 15px;
+	background-color: rgba(255, 255, 255, 0);
+	font-size: 10px;
+	font-family: serif;
+	padding: 12px 20px;
+	color: rgb(84, 84, 84);
+	margin: 0;
+	margin-left: 5%;
+}
+button:hover {
+	background-color: rgb(241, 205, 179);
+}
+
+.title {
+	font-size: 1em;
+	background: none;
+	font-weight: bold;
+	padding: 0;
+	border-bottom: 5px solid white;
+	text-align: center;
+}
+.title:hover {
+	color: rgb(84, 84, 84);
+}
+.left {
+	min-width: 180px;
+	background-color: rgb(241, 205, 179);
+	width: 20%;
+	height: 500px;
+	position: relative;
+	overflow: auto;
+	float: left;
+}
+.main {
+	min-width: 720px;
+	width: 80%;
+	position: relative;
+	float: right;
+}
+.map {
+	display: none;
+}
+.main h1 {
+	margin: 5%;
+	text-align: center;
+}
+.control {
+	width: 60%;
+	height: 43px;
+	margin: 0 auto;
+}
+.control span {
+	margin: 13px 0;
+}
+.slider {
+	position: relative;
+	top: 5px;
+	margin: 0 10px;
+}
+.progress_body {
+	width: 50%;
+	height: 20px;
+	border: solid 1px rgb(241, 205, 179);
+	display: flex;
+	margin: 5% auto;
+	position: relative;
+}
+.progress {
+	flex-basis: 0%;
+	height: 20px;
+	background-color: rgb(241, 205, 179);
+}
+.answer {
+	margin: 0 auto;
+	width: 70%;
+	border: 5px solid rgb(241, 205, 179);
+}
+.answer h1 {
+	font-size: 1.8em; 
+}
+.change {
+	margin-top: 5%;
+	margin-left: 0;
+}
+.info {
+	margin: 3%;
+	margin-left: 15%;
+	text-align: left;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+.info img {
+	margin: 5px 10px;
+	width: auto;
+	height: 30px;
+}
+.info div {
+	line-height: 41px;
+	margin:0 5%; 
+	width: 80%;
+}
+.address img {
+	box-sizing: border-box;
+	width: 37.5px;
+	padding: 0 8px;
+}
+.loading {
+	width: 62px;
+	margin: 0 auto;
+	background-color: rgba(255, 255, 255, 0);
+	position: absolute;
+	left: 0;
+	right: 0;
+	display: none;
+}
