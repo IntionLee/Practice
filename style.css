@@ -22,7 +22,7 @@ li {
 	padding-left: 20%;
 	margin: 3% 5%;
 	list-style: none;
-	line-height: 41px;
+	line-height: 3.203125em;
 	border-bottom: 2px solid white;
 }
 li:hover {
@@ -84,17 +84,23 @@ button:hover {
 .control span {
 	margin: 13px 0;
 }
+.control button {
+	margin-top: 5%;
+}
 .slider {
+	width: 55%;
 	position: relative;
 	top: 5px;
-	margin: 0 10px;
+	margin: 0 2%;
 }
+  
 .progress_body {
 	width: 50%;
 	height: 20px;
 	border: solid 1px rgb(241, 205, 179);
 	display: flex;
-	margin: 5% auto;
+	margin: 10% auto;
+	margin-bottom: 5%; 
 	position: relative;
 }
 .progress {
@@ -130,6 +136,7 @@ button:hover {
 .info div {
 	line-height: 41px;
 	margin:0 5%; 
+	margin-left: 3%;
 	width: 80%;
 }
 .address img {
@@ -138,11 +145,137 @@ button:hover {
 	padding: 0 8px;
 }
 .loading {
-	width: 62px;
+	width: 50%;
 	margin: 0 auto;
 	background-color: rgba(255, 255, 255, 0);
 	position: absolute;
 	left: 0;
 	right: 0;
 	display: none;
+}
+
+@media screen and (max-width: 900px) and (min-width: 540px) {
+    body {
+        min-width: 540px;
+        min-width: 0;
+        font-size: 0.625em;
+    }
+
+    h1 {
+		font-size: 3.125em;
+	}
+
+    li {
+		font-size: 0.5em;
+		background-size: 25px auto;
+	}
+
+	button {
+		border-radius: 9px;
+		font-size: 6px;
+		padding: 7px 12px;
+	}
+	.title {
+		font-size: 0.625em;
+	}
+
+	.left {
+		width: 30%;
+		min-width: 162px;
+	}
+
+	.main {
+		width: 70%;
+		min-width: 378px;
+	}
+
+	.info {
+		margin-left: 5%;
+	}
+
+	.info img {
+		height: 20px;
+	}
+
+	.address img {
+		width: 25px;
+		padding: 0 5.28px;
+	}
+}
+
+@media screen and (max-width: 540px) {
+    body {
+    	width: 100%;
+    	max-width: 540px;
+    	min-width: 375px;
+        font-size: 0.4em;
+    }
+
+    h1 {
+		font-size: 3em;
+	}
+
+	ul {
+		width: 100%;
+	}
+
+    li {
+    	margin: 3% 2%;
+    	width: 45%;
+		font-size: 0.32em;
+		background-size: 20px auto;
+		box-sizing: border-box;
+		padding-left: 6%;
+		float: left;
+	}
+
+	li:nth-child(odd) {
+		margin-left: 4%;
+	}
+
+	button {
+		border-radius: 6px;
+		font-size: 4px;
+		padding: 5px 8px;
+	}
+	.title {
+		font-size: 0.4em;
+		width: 100%;
+		float: none;
+		margin-left: 0 !important;
+		margin-right: 0; 
+		margin-bottom: 2%; 
+	}
+
+	.left {
+		margin: 0;
+		max-width: 540px;
+		min-width: 375px;
+		position: absolute;
+		top: 300px;
+		width: 100%;
+		float: none;
+	}
+
+	.main {
+		max-width: 540px;
+		min-width: 375px;
+		width: 100%;
+		float: none;
+		position: absolute;
+	}
+
+	.info {
+		margin-left: 5%;
+	}
+
+	.info img {
+		height: 20px;
+	}
+
+	.address img {
+		width: 25px;
+		padding: 0 5.28px;
+	}
+
 }

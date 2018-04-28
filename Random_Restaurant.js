@@ -147,14 +147,24 @@ function handleLeftBar() {
 		newListItem.innerText = restaurantList[i].name;
 		leftBar.appendChild(newListItem);
 	}
+	setLeftHeight();
 	leftBarClick();
 }
 
 function setLeftHeight() {
-	if (main.clientHeight > window.innerHeight) {
-		left.style.height = main.clientHeight+'px';
+	if (window.innerWidth <= 540) {
+		left.style.top = (main.clientHeight*1.1)+'px';
+		left.style.height = 'auto';
+		if (window.innerHeight-main.clientHeight*1.1 > left.clientHeight) {
+			left.style.height = (window.innerHeight-main.clientHeight*1.1)+'px';
+		}
 	} else {
-		left.style.height = window.innerHeight+'px';
+		left.style.top = '0';
+		if (main.clientHeight > window.innerHeight) {
+			left.style.height = main.clientHeight+'px';
+		} else {
+			left.style.height = window.innerHeight+'px';
+		}
 	}
 }
 
