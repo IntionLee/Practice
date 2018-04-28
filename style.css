@@ -6,6 +6,7 @@ body {
 	color: rgb(84, 84, 84);
 	font-family: "Microsoft JhengHei", serif;
 	text-align: center;
+	font-size: 16px;
 }
 h1 {
 	font-size: 5em;
@@ -158,15 +159,11 @@ button:hover {
     body {
         min-width: 540px;
         min-width: 0;
+        font-size: 10px;
         font-size: 0.625em;
     }
 
-    h1 {
-		font-size: 3.125em;
-	}
-
     li {
-		font-size: 0.5em;
 		background-size: 25px auto;
 	}
 
@@ -174,9 +171,6 @@ button:hover {
 		border-radius: 9px;
 		font-size: 6px;
 		padding: 7px 12px;
-	}
-	.title {
-		font-size: 0.625em;
 	}
 
 	.left {
@@ -208,12 +202,8 @@ button:hover {
     	width: 100%;
     	max-width: 540px;
     	min-width: 375px;
-        font-size: 0.4em;
+        font-size: 6.4px;
     }
-
-    h1 {
-		font-size: 3em;
-	}
 
 	ul {
 		width: 100%;
@@ -222,7 +212,6 @@ button:hover {
     li {
     	margin: 3% 2%;
     	width: 45%;
-		font-size: 0.32em;
 		background-size: 20px auto;
 		box-sizing: border-box;
 		padding-left: 6%;
@@ -234,12 +223,12 @@ button:hover {
 	}
 
 	button {
-		border-radius: 6px;
-		font-size: 4px;
-		padding: 5px 8px;
+		border-radius: 9px;
+		font-size: 6px;
+		padding: 7px 12px;
 	}
+	
 	.title {
-		font-size: 0.4em;
 		width: 100%;
 		float: none;
 		margin-left: 0 !important;
