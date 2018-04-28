@@ -186,6 +186,7 @@ setLeftHeight();
 distance.addEventListener('change', handleSlider);
 distance.addEventListener('mousemove', handleSlider);
 window.addEventListener('resize', setLeftHeight);
+window.addEventListener("orientationchange", setLeftHeight);
 change.addEventListener('click', () => {
 	randomPick(restaurantList);
 });
